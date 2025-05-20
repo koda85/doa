@@ -1,0 +1,140 @@
+git restore --staged myapp.py
+ls -l
+ls -la
+git status
+git restore  myapp.py
+ls -la
+git rm --cached myapp.py
+ls -l
+git add myapp.py
+git status
+echo "print "jfsldhf" >> myapp.py
+echo "print jfsldhf" >> myapp.py
+git status
+git add myapp.py
+git status
+cat myapp.py 
+git commint -m "test"
+mkdir log
+touch log/log1
+touch log/log2
+touch log/log3
+git status
+touch .gitignore
+echo 'log/' >> .gitignore 
+git status
+git add .gitignore 
+git commint -m "add ignor"
+echo 'sawsdsda' > log/log1 
+git status
+ls -la
+history
+git branch -a
+git branch fork
+git branch test
+git branch -a
+git switch fork
+git branch -a
+touch index.html
+echo 'my site' > index.html 
+git switch test
+touch playbook.yaml
+echo '-name: my playbook' > playbook.yaml 
+echo '- name: my playbook' > playbook.yaml 
+git add playbook.yaml 
+git commit -m "ansible"
+git switch fork
+git add index.html 
+git commit -m web
+git switch master
+touch mu_file.txt
+echo "etst" > myapp.py 
+echo "etst" > mu_file.txt 
+git add mu_file.txt 
+git commint -m "new commit"
+git mv mu_file.txt my_file.txt
+git status
+git add my_file.txt 
+git status
+git log
+git commint -m "new2 commit"
+git log
+git log --decorate --graph --all
+git merge 'test'
+git merge 'test' -m "merge"
+git log --decorate --graph --all
+git merge 'test' -m "merge"
+git commit -m "merge"
+git merge 'test" -m "merge"
+git log --decorate --graph --all
+git merge 'test' 
+git merge 'test'
+git log
+git reset --hard bb6c860e492768e6c53ca4d778362efb2d66bbbf
+git log
+git reset --hard 39762d23a3682feea6c83ee9273008dbc6d0572e
+git log
+git status
+mc
+ls -l
+git switch fork
+ls -l
+git branch -a
+git switch master
+ls -l
+git switch test
+ls -l
+git switch master
+git branch test
+git merge test
+ssh-keygen -t rsa
+cat /home/engineer/.ssh/id_rsa.pub
+cd 
+git clone git@github.com:koda85/doa.git
+ls -l
+cd doa/
+apt install mc -y
+sudo apt install mc -y
+mkdir ansible
+cd ansible/
+sudo apt install ansible -y
+ansible --version
+ip add
+ssh-copy-id 10.0.2.8
+ssh-copy-id 10.0.2.5
+ssh-copy-id 10.0.2.6
+ssh-copy-id 10.0.2.7
+ssh-copy-id sa@10.0.2.8
+Console47
+ansible -i host.ini all
+ansible -i hosts.ini all -m ping
+nano ansible.cfg
+ansible -m ping
+ansible  all -m ping
+ansible my_servers -m ping
+ansible -i hosts.ini all -m ping
+ansible  all -m ping
+ansible  -m ping
+ansible my_server -m ping
+ansible my_servers -m ping
+ansible all -m ping
+ansible my_servers -m ping
+ansible client1 -m shell -a "date"
+ansible all -m shell -a "date"
+ansible all -v -m shell -a "date"
+echo "privet" > privet.txt
+ansible client1 -m copy -a "src=privet.txt dest=/home mode=777"
+ansible client1 -m copy -a "src=privet.txt dest=/home mode=777" -b
+echo "helo" >>privet.txt 
+ansible client1 -m copy -a "src=privet.txt dest=/home mode=777" -b
+ansible all -v -m shell -a "ls -l /home"
+ansible all -v -m file -a "path=/home/privet.txt state=absent" -b
+ansible all -m file -a "path=/home/privet.txt state=absent" -b
+ansible client1 -m apt -a "name=apache2" -b 
+echo "hello. devpos" >index.html
+ansible client1 -m copy -a "src=index.html dest=/var/www/html mode=0644" -b 
+ansible client1 -m service -a "name=apache2 state=started enabled=yes" -b
+curl 10.0.2.6
+history --help
+history -r 2
+history -a 2
