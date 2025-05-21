@@ -4,8 +4,8 @@
   become: yes
    
   vars:
-    source_file: ./index.html
-    destin_file: /var/www/html
+    source_folder: ./site
+    destin_folder: /var/www/html
 
   tasks:
   - block: #debian
@@ -14,8 +14,8 @@
 
 
     - name: upload web site DEB
-      copy: src={{source_file}} dest={{destin_file}} mode=0644
-      notify: restart debian
+      copy: src={{ item }} dest={{ destin_folder }} mode=0644
+      with_fileglob: "{{ source_folder }}/*"
 
 
     - name: start apache
@@ -31,7 +31,14 @@
       dnf: name=httpd
     
     - name: upload web site RED
-      copy: src={{source_file}} dest={{destin_file}} mode=0644
+      copy: 
+        src: "{{ source_folder }}/{{ item }}" 
+        dest: "{{ destin_folder }}"
+        mode: 0644
+      loop:
+        - index.html
+        - cat1.jpg
+        - cat2.jpeg
       notify: restart red  
 
 
@@ -41,4 +48,11 @@
         state: started
         enabled: yes
 
-    when: ansible_os_family=="Red"
+    when: ansible_os_family=="RED"
+
+  handlers:
+  - name: restart debian
+    service: name=apache2 state=restarted 
+  handlers:
+  - name: restart red
+    service: name=httpd state=restarted 

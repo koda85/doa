@@ -11,7 +11,7 @@
         - "petya"
         - "masha"
 
-        
+
     - name: loop until
       shell: echo -n Z >> myfile.txt && cat myfile.txt
       register: output
@@ -22,3 +22,4 @@
     - name: print output
       debug:
         var: output
+        
