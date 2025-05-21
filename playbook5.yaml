@@ -1,0 +1,45 @@
+---
+- name: install apache
+  hosts: my_servers
+  become: yes
+   
+  vars:
+    source_file: ./index.html
+    destin_file: /var/www/html
+
+
+  tasks:
+  - block: #debian
+    - name: install apache
+      apt: name=apache2
+
+
+    - name: upload web site DEB
+      copy: src={{source_file}} dest={{destin_file}} mode=0644
+      notify: restart debian
+
+
+    - name: start apache
+      service:
+        name: apache2 
+        state: started
+        enabled: yes
+    when: ansible_os_family=="Debian"  
+
+  - block: #red
+
+    - name: install apache RED
+      dnf: name=httpd
+    
+    - name: upload web site RED
+      copy: src={{source_file}} dest={{destin_file}} mode=0644
+      notify: restart red  
+
+
+    - name: start httpd
+      service:
+        name: httpd 
+        state: started
+        enabled: yes
+
+    when: ansible_os_family=="Red"

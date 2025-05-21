@@ -1,0 +1,42 @@
+---
+- name: my var playbook
+  hosts: my_servers
+  become: yes
+
+  vars:
+    message1: Hello
+    message2: world 
+    secret: mypass
+
+
+  tasks: 
+   - name: print secret
+     debug:
+       var: secret
+
+
+   - debug:
+       msg: "Secret word: {{ secret }}"
+
+   - name: print owner
+     debug:
+       msg: "this server  owner is -->> {{ owner }} <<-- "
+
+  
+   - set_fact: full_message="{{ message1 }} {{ message2 }} from {{ owner }}"
+
+   - debug:
+       var:  full_message
+
+   - debug:
+       var: ansible_distribution
+   - debug:
+       var: ansible_os_family
+
+
+   - shell: 
+       cmd: date
+     register: shell_result
+
+   - debug:
+      var: shell_result.stdout
