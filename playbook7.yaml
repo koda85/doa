@@ -1,0 +1,14 @@
+---
+- name: install many pkg
+  hosts: client1
+  become: yes
+
+  tasks:
+  - name: install soft
+    apt: name={{ item }} state=latest
+    with_items:
+      - mc
+      - ncdu
+      - htop
+      - curl
+      - wget
