@@ -1,0 +1,7 @@
+---
+- name: test connections
+  hosts: my_servers
+  
+  tasks:
+   - name: ping my srv
+     ping: 
