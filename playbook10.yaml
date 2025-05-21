@@ -1,0 +1,39 @@
+---
+- name: install apache
+  hosts: my_servers
+  become: yes
+
+
+  tasks:
+  - name: clear 
+    file:
+     path: /var/www/html/
+     state: absent 
+
+
+  - block: #debian
+
+    - name: uninstall apache
+      apt: 
+        name: apache2
+        state: absent
+
+    when: ansible_os_family=="Debian"
+
+
+  - block: #red
+
+    - name: uninstall apache RED
+      dnf: 
+        name: httpd
+        state: absent
+
+    when: ansible_os_family=="RED"
+
+  handlers:
+  - name: restart debian
+    service: name=apache2 state=restarted 
+  handlers:
+  - name: restart red
+    service: name=httpd state=restarted 
+

@@ -1,0 +1,7 @@
+---
+- name: where server role 
+  hosts: "{{ MY_HOSTS }}"
+  become: yes
+  
+  roles:
+  - role: web_server

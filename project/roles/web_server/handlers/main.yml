@@ -1,0 +1,6 @@
+---
+# handlers file for web_server
+- name: restart debian
+  service: name=apache2 state=restarted 
+- name: restart red
+  service: name=httpd state=restarted 

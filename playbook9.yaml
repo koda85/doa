@@ -9,6 +9,14 @@
 
   tasks:
   - block: #debian
+
+    - name: gen html
+      template:
+        src: "{{ source_folder }}/index.j2"
+        dest: "{{ destin_folder }}/index.html"
+        mode: 0644
+      notify: restart debian
+
     - name: install apache
       apt: name=apache2
 
@@ -26,6 +34,13 @@
     when: ansible_os_family=="Debian"  
 
   - block: #red
+    - name: gen html
+      template:
+        src: "{{ source_folder }}/index.j2"
+        dest: "{{ destin_folder }}/index.html"
+        mode: 0644
+      notify: restart red
+
 
     - name: install apache RED
       dnf: name=httpd
@@ -36,7 +51,6 @@
         dest: "{{ destin_folder }}"
         mode: 0644
       loop:
-        - index.html
         - cat1.jpg
         - cat2.jpeg
       notify: restart red  

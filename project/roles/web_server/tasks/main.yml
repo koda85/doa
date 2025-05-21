@@ -1,0 +1,60 @@
+---
+# tasks file for web_server
+- block: #debian
+
+  - name: install apache
+    apt: name=apache2
+
+  - name: gen html
+    template:
+      src: "index.j2"
+      dest: "{{ destin_folder }}/index.html"
+      mode: 0644
+    notify: restart debian
+
+
+
+
+  - name: upload web site DEB
+    copy: src={{ item }} dest={{ destin_folder }} mode=0644
+    with_fileglob: "files/*"
+    notify: restart debian
+
+  - name: start apache
+    service:
+      name: apache2 
+      state: started
+      enabled: yes
+  when: ansible_os_family=="Debian"  
+
+- block: #red
+
+  - name: install apache RED
+    dnf: name=httpd
+
+  - name: gen html
+    template:
+      src: "index.j2"
+      dest: "{{ destin_folder }}/index.html"
+      mode: 0644
+    notify: restart red
+
+  
+  - name: upload web site RED
+    copy: 
+      src: "{{ item }}" 
+      dest: "{{ destin_folder }}"
+      mode: 0644
+    loop:
+      - cat1.jpg
+      - cat2.jpeg
+    notify: restart red  
+
+
+  - name: start httpd
+    service:
+      name: httpd 
+      state: started
+      enabled: yes
+
+  when: ansible_os_family=="RED"
